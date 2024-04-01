@@ -23,7 +23,7 @@ def bisection_method(user_equation, a, b, relative_error):
     c = a
     
     result_text.delete(1.0, tk.END)  # Clear previous results
-    result_text.insert(tk.END, "Iteration\t a\t\t\t b\t\t\t c\t\t\t f(c)\n")
+    result_text.insert(tk.END, "Iteration\t a\t\t\t b\t\t\t Root\t\t\t Relative Error\n")
     
     while (b - a) >= relative_error:
         # Find the midpoint
@@ -33,6 +33,9 @@ def bisection_method(user_equation, a, b, relative_error):
         if f(c, user_equation) == 0.0:
             break
         
+        # Calculate the relative error
+        relative_error_c = abs((c - a) / c) * 100 if iterations > 0 else 0
+        
         # Decide the side to repeat the steps
         if f(c, user_equation) * f(a, user_equation) < 0:
             b = c
@@ -40,7 +43,7 @@ def bisection_method(user_equation, a, b, relative_error):
             a = c
         
         # Print iteration details with values rounded to 4 decimal places
-        result_text.insert(tk.END, f"{iterations}\t\t {a:.4f}\t\t {b:.4f}\t\t {c:.4f}\t\t {f(c, user_equation):.4f}\n")
+        result_text.insert(tk.END, f"{iterations}\t\t {a:.4f}\t\t {b:.4f}\t\t {c:.4f}\t\t {relative_error_c:.4f}\n")
         
         # Increment iteration counter
         iterations += 1
@@ -103,13 +106,13 @@ equation_entry.grid(row=0, column=1, columnspan=4, padx=10, pady=5, sticky="ew")
 lower_frame = tk.Frame(root)
 lower_frame.grid(row=1, column=0, padx=10, pady=5, sticky="ew")
 
-lower_label = tk.Label(lower_frame, text="Lower bound:")
+lower_label = tk.Label(lower_frame, text="Lower bound: (a)")
 lower_label.grid(row=0, column=0, padx=10, pady=5, sticky="e")
 lower_entry = tk.Entry(lower_frame)
 lower_entry.grid(row=0, column=1, padx=10, pady=5, sticky="ew")
 
 # Upper bound input
-upper_label = tk.Label(lower_frame, text="Upper bound:")
+upper_label = tk.Label(lower_frame, text="Upper bound: (b)")
 upper_label.grid(row=0, column=2, padx=10, pady=5, sticky="e")
 upper_entry = tk.Entry(lower_frame)
 upper_entry.grid(row=0, column=3, padx=10, pady=5, sticky="ew")
