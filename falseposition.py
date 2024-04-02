@@ -49,7 +49,7 @@ def regula_falsi_method(user_equation, a, b, relative_error):
         # Increment iteration counter
         iterations += 1
     
-    result_text.insert(tk.END, f"\nRoot is: {c:.4f}\nIterations: {iterations}")
+    result_text.insert(tk.END, f"\nRoot is: {c:.4f}\nRelative Error: {relative_error_c:.4f}%")
 
 def run_regula_falsi():
     user_equation = equation_entry.get()
@@ -126,10 +126,7 @@ error_entry = tk.Entry(lower_frame, width=10, font=("Arial", 12))
 error_entry.grid(row=0, column=5, padx=10, pady=5)
 
 # Power input
-power_label = tk.Label(lower_frame, text="Raise to power:")
-power_label.grid(row=0, column=6, padx=10, pady=5, sticky="e")
 power_entry = tk.Entry(lower_frame, width=10, font=("Arial", 12))
-power_entry.grid(row=0, column=7, padx=10, pady=5)
 
 # Buttons for calculator functionality
 buttons_frame = tk.Frame(root)
