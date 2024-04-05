@@ -1,0 +1,12 @@
+Instructions:
+
+Open Windows PowerShell and run these commands
+
+cd Desktop         (or the location of the folder)
+cd numerics
+
+To view the Bisection Method:
+py bisection.py
+
+To view the False Position Method:
+py falseposition.py
